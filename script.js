@@ -26,10 +26,20 @@ $(document).ready(function () {
         buttonEl.append(iconEl)
         timeDiv.text(timeSlots[i])
 
+        if((i+9) < moment().hour()){
+            descripDiv.attr("class", "past col-10")
+            buttonEl.attr("disabled", "true")
+            iconEl.attr("class", "")
+        }else if((i+9) === moment().hour()){
+            descripDiv.attr("class", "present col-10")
+        }else{
+            descripDiv.attr("class", "future col-10")
+        }
+
 
     }
 
-
+console.log(moment().hour())
 
 })
 //condition checks for past present future
