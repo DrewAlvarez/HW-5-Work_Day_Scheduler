@@ -1,6 +1,9 @@
 $(document).ready(function () {
     var timeSlots = ["9Am","10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"]
 
+    //current day
+    $("#currentDay").text(moment().format('dddd') +", " + moment().format("MMM Do"))
+
     //timeSlots.forEach()
     for(var i=0; i< timeSlots.length; i++){
         var newDiv = $("<div>");
@@ -9,37 +12,39 @@ $(document).ready(function () {
         var buttonEl = $("<button>")
         var iconEl = $("<i>")
 
-        newDiv.attr("data-hour", timeSlots[i])
-        newDiv.attr("class", "row")
+        newDiv.attr("data-hour", timeSlots[i]);
+        newDiv.attr("class", "row");
 
-        buttonEl.attr("class", "saveBtn col-1")
-        iconEl.attr("class", "far fa-save")
-        timeDiv.attr("class","hour col-1")
-        descripDiv.attr("class", "description col-10")
+        buttonEl.attr("class", "saveBtn col-1");
+        iconEl.attr("class", "far fa-save");
+        timeDiv.attr("class","hour col-1");
+        descripDiv.attr("class", "description col-10");
     
-        $(".container").append(newDiv)
+        $(".container").append(newDiv);
 
-        newDiv.append(timeDiv)
-        newDiv.append(descripDiv)
-        newDiv.append(buttonEl)
+        newDiv.append(timeDiv);
+        newDiv.append(descripDiv);
+        newDiv.append(buttonEl);
 
-        buttonEl.append(iconEl)
-        timeDiv.text(timeSlots[i])
+        buttonEl.append(iconEl);
+        timeDiv.text(timeSlots[i]);
 
         if((i+9) < moment().hour()){
-            descripDiv.attr("class", "past col-10")
-            buttonEl.attr("disabled", "true")
-            iconEl.attr("class", "")
+            descripDiv.attr("class", "past col-10");
+            buttonEl.attr("disabled", "true");
+            iconEl.attr("class", "");
         }else if((i+9) === moment().hour()){
-            descripDiv.attr("class", "present col-10")
+            descripDiv.attr("class", "present col-10");
         }else{
-            descripDiv.attr("class", "future col-10")
+            descripDiv.attr("class", "future col-10");
         }
 
-
+        buttonEl.on("click", function(){
+            var note = $("textarea").value;
+            localStorage.setItem("note", note)
+        })
     }
 
-console.log(moment().hour())
 
 })
 //condition checks for past present future
