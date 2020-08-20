@@ -12,37 +12,36 @@ $(document).ready(function () {
         var buttonEl = $("<button>")
         var iconEl = $("<i>")
 
-        newDiv.attr("data-hour", timeSlots[i]);
-        newDiv.attr("class", "row");
+        newDiv.attr("data-hour", timeSlots[i])
+        newDiv.attr("class", "row")
 
-        buttonEl.attr("class", "saveBtn col-1");
-        iconEl.attr("class", "far fa-save");
-        timeDiv.attr("class","hour col-1");
-        descripDiv.attr("class", "description col-10");
+        buttonEl.attr("class", "saveBtn col-1")
+        iconEl.attr("class", "far fa-save")
+        timeDiv.attr("class","hour col-1")
+        descripDiv.attr("class", "description col-10")
     
-        $(".container").append(newDiv);
+        $(".container").append(newDiv)
 
-        newDiv.append(timeDiv);
-        newDiv.append(descripDiv);
-        newDiv.append(buttonEl);
+        newDiv.append(timeDiv)
+        newDiv.append(descripDiv)
+        newDiv.append(buttonEl)
 
-        buttonEl.append(iconEl);
-        timeDiv.text(timeSlots[i]);
+        buttonEl.append(iconEl)
+        timeDiv.text(timeSlots[i])
 
         if((i+9) < moment().hour()){
-            descripDiv.attr("class", "past col-10");
-            buttonEl.attr("disabled", "true");
-            iconEl.attr("class", "");
+            descripDiv.attr("class", "past col-10")
         }else if((i+9) === moment().hour()){
-            descripDiv.attr("class", "present col-10");
+            descripDiv.attr("class", "present col-10")
         }else{
-            descripDiv.attr("class", "future col-10");
+            descripDiv.attr("class", "future col-10")
         }
 
-        buttonEl.on("click", function(){
-            var note = $("textarea").value;
-            localStorage.setItem("note", note)
+        buttonEl.on("click", function(ev){
+            ev.preventDefault()
         })
+
+
     }
 
 
