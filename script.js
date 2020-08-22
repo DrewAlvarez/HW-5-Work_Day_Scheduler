@@ -11,14 +11,14 @@ $(document).ready(function () {
         var descripDiv = $("<textarea>");
         var buttonEl = $("<button>");
         var iconEl = $("<i>");
-
+        //setting attributes
         newDiv.attr("data-hour", timeSlots[i]);
         newDiv.attr("class", "row");
         buttonEl.attr("class", "saveBtn col-1");
         iconEl.attr("class", "far fa-save");
         timeDiv.attr("class","hour col-1");
         descripDiv.attr("class", "description col-10");
-            
+        //appending elements
         $(".container").append(newDiv);
         newDiv.append(timeDiv);
         newDiv.append(descripDiv);
@@ -28,7 +28,7 @@ $(document).ready(function () {
         timeDiv.text(timeSlots[i]);
 
         descripDiv.text(localStorage.getItem(timeSlots[i]))
-
+        //backgroud logic
         if((i+9) < moment().hour()){
             descripDiv.attr("class", "past col-10");
         }else if((i+9) === moment().hour()){
@@ -36,7 +36,7 @@ $(document).ready(function () {
         }else{
             descripDiv.attr("class", "future col-10");
         }
-
+        //button function
         buttonEl.on("click", function(){
             var note = $(this).siblings("textarea").val();
             var notes = $(this).parent().attr("data-hour");
